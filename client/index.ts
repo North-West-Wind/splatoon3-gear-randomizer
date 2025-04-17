@@ -28,7 +28,13 @@ const shoesCol = document.getElementById("shoes")!;
 			clothesCol.getElementsByTagName("img").item(0)!.src = (await getGearImageUrl(clothes, "clothes"))!;
 			shoesCol.getElementsByTagName("img").item(0)!.src = (await getGearImageUrl(shoes, "shoes"))!;
 
-			ws.send(`${await getGearName(head, "head")}|${await getGearName(clothes, "clothes")}|${await getGearName(shoes, "shoes")}`);
+			ws.send(`${await getGearName(head, "head")}|${await getGearName(clothes, "clothes")}|${await getGearName(shoes, "shoes")}|${head} ${clothes} ${shoes}`);
+		} else if (message.data.startsWith("update")) {
+			const [_, head, clothes, shoes] = (message.data as string).split(" ").map(arg => parseInt(arg));
+
+			headCol.getElementsByTagName("img").item(0)!.src = (await getGearImageUrl(head, "head"))!;
+			clothesCol.getElementsByTagName("img").item(0)!.src = (await getGearImageUrl(clothes, "clothes"))!;
+			shoesCol.getElementsByTagName("img").item(0)!.src = (await getGearImageUrl(shoes, "shoes"))!;
 		}
 	};
 })();
