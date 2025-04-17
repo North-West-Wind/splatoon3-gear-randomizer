@@ -1,0 +1,24 @@
+{
+  "name": "s3-gear-randomizer",
+  "version": "1.0.0",
+  "description": "Randomize your Splatoon 3 gear combination base on what you own and Leanny's GitHub stuff.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "tsx src/index.ts"
+  },
+  "keywords": [
+    "splatoon3",
+    "randomizer",
+    "gear"
+  ],
+  "author": "NorthWestWind",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "axios": "^1.8.4"
+  }
+}
