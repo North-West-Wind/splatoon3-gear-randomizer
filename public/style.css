@@ -10,12 +10,27 @@ body {
 
 .column {
 	flex: 1;
-	height: 100%;
 	margin: 1vmax;
+	text-align: center;
 }
 
 .column img {
 	position: relative;
-	width: 100%;
 	aspect-ratio: 1/1;
+}
+
+.column.hori {
+	height: 100%;
+}
+
+.column.vert {
+	width: 100%;
+}
+
+.column.hori img {
+	width: 100%;
+}
+
+.column.vert img {
+	height: 100%;
 }
