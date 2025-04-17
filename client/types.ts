@@ -68,7 +68,7 @@ export type GearInfo = {
 	Genre0: string;
 	Genre1: string;
 	// Too lazy to type all so here are the important things
-	id: number;
+	Id: number;
 	__RowId: string;
 }
 

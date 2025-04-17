@@ -1,0 +1,21 @@
+body {
+	position: fixed;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: flex;
+}
+
+.column {
+	flex: 1;
+	height: 100%;
+	margin: 1vmax;
+}
+
+.column img {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1/1;
+}

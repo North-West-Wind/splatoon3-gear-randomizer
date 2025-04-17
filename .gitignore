@@ -130,4 +130,5 @@ dist
 .pnp.*
 
 # Custom
-input/gear.json
+public/gear.json
+public/bundle.js

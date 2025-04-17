@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GearInfoClothes, GearInfoHead, GearInfoShoes, GearType, Language, Locale } from "./types";
 
 let head: GearInfoHead[] | undefined;
@@ -10,24 +9,24 @@ export async function getInfo(type: GearType) {
 	switch (type) {
 		case "head":
 			if (head) return head;
-			return head = (await axios.get("https://leanny.github.io/splat3/data/mush/930/GearInfoHead.json")).data as GearInfoHead[];
+			return head = (await fetch("https://leanny.github.io/splat3/data/mush/930/GearInfoHead.json").then(res => res.json())) as GearInfoHead[];
 		case "clothes":
 			if (clothes) return clothes;
-			return clothes = (await axios.get("https://leanny.github.io/splat3/data/mush/930/GearInfoClothes.json")).data as GearInfoClothes[];
+			return clothes = (await fetch("https://leanny.github.io/splat3/data/mush/930/GearInfoClothes.json").then(res => res.json())) as GearInfoClothes[];
 		case "shoes":
 			if (shoes) return shoes;
-			return shoes = (await axios.get("https://leanny.github.io/splat3/data/mush/930/GearInfoShoes.json")).data as GearInfoShoes[];
+			return shoes = (await fetch("https://leanny.github.io/splat3/data/mush/930/GearInfoShoes.json").then(res => res.json())) as GearInfoShoes[];
 	}
 }
 
 export async function getLang(locale: Locale) {
 	if (lang && lang.locale == locale) return lang;
-	return lang = { locale, data: (await axios.get(`https://leanny.github.io/splat3/data/language/${locale}.json`)).data as Language }
+	return lang = { locale, data: (await fetch(`https://leanny.github.io/splat3/data/language/${locale}.json`).then(res => res.json())) as Language }
 }
 
 export async function getGearName(id: number, type: GearType, locale: Locale = "EUen") {
 	const info = await getInfo(type);
-	const gear = info.find(gear => gear.id == id);
+	const gear = info.find(gear => gear.Id == id);
 	if (!gear) return undefined; 
 	const lang = await getLang(locale);
 	let nameMap: Record<string, string> = {};
@@ -49,7 +48,7 @@ export async function getGearName(id: number, type: GearType, locale: Locale = "
 
 export async function getGearImageUrl(id: number, type: GearType) {
 	const info = await getInfo(type);
-	const gear = info.find(gear => gear.id == id);
+	const gear = info.find(gear => gear.Id == id);
 	if (gear) return `https://leanny.github.io/splat3/images/gear/${gear.__RowId}.png`;
 	return undefined;
 }
