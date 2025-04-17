@@ -25,10 +25,26 @@ export async function getLang(locale: Locale) {
 	return lang = { locale, data: (await axios.get(`https://leanny.github.io/splat3/data/language/${locale}.json`)).data as Language }
 }
 
-export async function getGearName(id: number, type: GearType) {
+export async function getGearName(id: number, type: GearType, locale: Locale = "EUen") {
 	const info = await getInfo(type);
 	const gear = info.find(gear => gear.id == id);
-
+	if (!gear) return undefined; 
+	const lang = await getLang(locale);
+	let nameMap: Record<string, string> = {};
+	switch (type) {
+		case "head":
+			nameMap = lang.data["CommonMsg/Gear/GearName_Head"];
+			break;
+		case "clothes":
+			nameMap = lang.data["CommonMsg/Gear/GearName_Clothes"];
+			break;
+		case "shoes":
+			nameMap = lang.data["CommonMsg/Gear/GearName_Shoes"];
+			break;
+	}
+	const key = gear.__RowId.split("_").pop();
+	if (!key) return undefined;
+	return nameMap[key];
 }
 
 export async function getGearImageUrl(id: number, type: GearType) {
